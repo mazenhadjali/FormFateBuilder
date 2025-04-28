@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { create } from 'zustand';
 import { FormFateProps } from 'react-form-fate';
 
@@ -56,6 +57,24 @@ const useStore = create<SystemStore>()((set) => ({
                 },
             },
         })),
+    clearAllFields: () =>
+        set(() => ({
+            formSchema: {
+                name: '',
+                properties: {},
+                buttons: [],
+            },
+        })),
+    removeField: (fieldName: string) =>
+        set((state) => {
+            const { [fieldName]: _, ...rest } = state.formSchema.properties;
+            return {
+                formSchema: {
+                    ...state.formSchema,
+                    properties: rest,
+                },
+            };
+        }),
 }));
 
 export default useStore;
