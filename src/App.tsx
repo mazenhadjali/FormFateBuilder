@@ -1,4 +1,10 @@
+import { FormFate } from "react-form-fate";
+import useStore from "./store";
+
 function App() {
+
+  const { formSchema, addField } = useStore();
+
 
   return (
     <>
@@ -37,6 +43,14 @@ function App() {
               <p className="text-gray-800 text-lg">
                 You can see how the form will look like.
               </p>
+              <div className="p-2 mt-2">
+                <FormFate
+                  formDefinition={formSchema}
+                  onSubmit={(formData) => {
+                    console.log(formData);
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
