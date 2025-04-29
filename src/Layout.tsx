@@ -3,7 +3,7 @@ import useStore from "./store";
 import CreateFieldButton from "./components/CreateFieldButton";
 
 function Layout() {
-    const { formSchema, addField } = useStore();
+    const { formSchema } = useStore();
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-green-100 to-pink-50 py-10 px-4">

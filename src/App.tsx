@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "./Layout";
-import { ModalProvider } from "./modal/context";
+import { ModalProvider } from "./modal/Provider.modal";
 
 
 function App() {
