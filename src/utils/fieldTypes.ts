@@ -1,4 +1,4 @@
-import { createDataUrlField, createDateField, createEmailField, createRadioField, createSelectField, createSimpleNumberField, createSimplePasswordField, createSimpleTextField, createTextAreaField, createTimeField } from "./fieldFactories";
+import { createBlockField, createDataUrlField, createDateField, createEmailField, createRadioField, createSelectField, createSimpleNumberField, createSimplePasswordField, createSimpleTextField, createTextAreaField, createTimeField } from "./fieldFactories";
 
 export const fieldTypes = [
     {
@@ -38,11 +38,11 @@ export const fieldTypes = [
         factory: () => createEmailField()
     },
     {
-        label: "Email", value: "email",
-        factory: () => createEmailField()
-    },
-    {
         label: "Password", value: "password",
         factory: () => createSimplePasswordField()
     },
+    {
+        label: "Block", value: "block",
+        factory: () => createBlockField()
+    }
 ]

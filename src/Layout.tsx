@@ -1,6 +1,7 @@
 import { FormFate } from "react-form-fate";
 import useStore from "./store";
 import CreateFieldButton from "./components/CreateFieldButton";
+import FieldsUIMapper from "./components/FieldsUIMapper";
 
 function Layout() {
     const { formSchema } = useStore();
@@ -42,6 +43,8 @@ function Layout() {
                         Add, edit, and delete fields to customize your form.
                     </p>
                     {/* You can place addField button or configuration controls here */}
+
+                    <FieldsUIMapper schema={formSchema} />
 
                     <CreateFieldButton />
 

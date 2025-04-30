@@ -15,23 +15,44 @@ const useStore = create<SystemStore>()((set) => ({
             firstName: {
                 type: 'text',
                 title: 'First Name',
-                description: 'Enter your first name',
+                placeholder: 'Enter your first name',
                 default: '',
                 required: true,
             },
             lastName: {
                 type: 'text',
                 title: 'Last Name',
-                description: 'Enter your last name',
+                placeholder: 'Enter your last name',
                 default: '',
                 required: true,
             },
             email: {
                 type: 'text',
                 title: 'Email',
-                description: 'Enter your email address',
+                placeholder: 'Enter your email address',
                 default: '',
                 required: true,
+            },
+            passwordBlock: {
+                type: 'block',
+                title: 'Password',
+                description: 'Enter your password',
+                properties: {
+                    password: {
+                        type: 'password',
+                        title: 'Password',
+                        placeholder: 'Enter your password',
+                        default: '',
+                        required: true,
+                    },
+                    confirmPassword: {
+                        type: 'password',
+                        title: 'Confirm Password',
+                        placeholder: 'Re-enter your password',
+                        default: '',
+                        required: true,
+                    },
+                },
             },
         },
         buttons: [
