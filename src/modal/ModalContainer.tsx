@@ -8,7 +8,7 @@ const ModalContainer: React.FC = () => {
     const context = useContext(ModalContext);
     if (!context || context.modals.length === 0) return null;
 
-    const { modals, closeModal } = context;
+    const { modals } = context;
     const { id, type, params } = modals[modals.length - 1];
 
     switch (type) {

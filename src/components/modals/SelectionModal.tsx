@@ -54,11 +54,7 @@ const SelectionModal = ({ id, params, type }: ModalInterface) => {
 
             try {
                 addField({
-                    [identifier]: {
-                        title: "fezfzef",
-                        type: selectedOption,
-                        required: true,
-                    },
+                    [identifier]: fieldTypes.find((field) => field.value === selectedOption)?.factory()
                 });
                 resolve();
             } catch (err) {

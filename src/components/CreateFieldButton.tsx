@@ -1,14 +1,10 @@
-import { ModalInterface, useModal } from '../modal/context';
+import { useModal } from '../modal/context';
 
 function CreateFieldButton() {
     const { pushModal } = useModal();
 
-    const modal: ModalInterface = {
-        type: 'createField',
-    }
-
     const onSubmit = () => {
-        pushModal(modal);
+        pushModal({ type: 'createField' });
     }
 
     return (

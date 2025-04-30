@@ -1,11 +1,48 @@
+import { createDataUrlField, createDateField, createEmailField, createRadioField, createSelectField, createSimpleNumberField, createSimplePasswordField, createSimpleTextField, createTextAreaField, createTimeField } from "./fieldFactories";
+
 export const fieldTypes = [
-    { label: "Text", value: "text" },
-    { label: "Radio", value: "radio" },
-    { label: "Checkbox", value: "checkbox" },
-    { label: "Select", value: "select" },
-    { label: "Textarea", value: "textarea" },
-    { label: "Number", value: "number" },
-    { label: "Date", value: "date" },
-    { label: "Email", value: "email" },
-    { label: "Password", value: "password" },
+    {
+        label: "Text", value: "text",
+        factory: () => createSimpleTextField()
+    },
+    {
+        label: "Radio", value: "radio",
+        factory: () => createRadioField()
+    },
+    {
+        label: "Select", value: "select",
+        factory: () => createSelectField()
+    },
+    {
+        label: "Textarea", value: "textarea",
+        factory: () => createTextAreaField()
+    },
+    {
+        label: "Number", value: "number",
+        factory: () => createSimpleNumberField()
+    },
+    {
+        label: "Date", value: "date",
+        factory: () => createDateField()
+    },
+    {
+        label: "Time", value: "time",
+        factory: () => createTimeField()
+    },
+    {
+        label: "URL", value: "url",
+        factory: () => createDataUrlField()
+    },
+    {
+        label: "Email", value: "email",
+        factory: () => createEmailField()
+    },
+    {
+        label: "Email", value: "email",
+        factory: () => createEmailField()
+    },
+    {
+        label: "Password", value: "password",
+        factory: () => createSimplePasswordField()
+    },
 ]
