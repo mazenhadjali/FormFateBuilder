@@ -1,4 +1,5 @@
 import React from 'react';
+import CreateFieldButton from './CreateFieldButton';
 
 type Field =
     | {
@@ -15,12 +16,6 @@ type BlockField = {
     title: string;
     description?: string;
     properties: Record<string, Field>;
-};
-
-type Schema = {
-    name: string;
-    properties: Record<string, Field>;
-    buttons?: { type: string; label: string; variant?: string }[];
 };
 
 type Props = {
@@ -65,6 +60,7 @@ function FieldsUIMapper({ schema }: Props) {
 
                         {value.description && (<p className="text-sm text-gray-600 mb-2">{value.description}</p>)}
                         <div>{renderFields(value.properties, `${fieldId}.`)}</div>
+                        <CreateFieldButton blockIdentifierType='block' blockIdentifier={key} />
                     </div>
                 );
             }

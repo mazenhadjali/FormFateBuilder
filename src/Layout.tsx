@@ -46,7 +46,7 @@ function Layout() {
 
                     <FieldsUIMapper schema={formSchema} />
 
-                    <CreateFieldButton />
+                    <CreateFieldButton blockIdentifierType="root" />
 
                 </div>
 

@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { create } from 'zustand';
 import { FormFateProps } from 'react-form-fate';
+import { updateSchema } from './utils/schemaUpdator';
+import { FormDefinition } from 'formfatecore';
 
 interface SystemStore {
     formSchema: FormFateProps['formDefinition'];
     setFormSchema: (formSchema: FormFateProps['formDefinition']) => void;
-    addField: (fields: FormFateProps['formDefinition']['properties']) => void;
+    addField: (identifierType: string, identifier: string, fields: FormDefinition['properties']) => void;
 }
 
 const useStore = create<SystemStore>()((set) => ({
@@ -68,15 +70,16 @@ const useStore = create<SystemStore>()((set) => ({
         ],
     },
     setFormSchema: (formSchema) => set({ formSchema }),
-    addField: (fields) =>
+    addField: (identifierType, identifier, fields) =>
         set((state) => ({
-            formSchema: {
-                ...state.formSchema,
-                properties: {
-                    ...state.formSchema.properties,
-                    ...fields,
-                },
-            },
+            formSchema: updateSchema(state.formSchema, identifierType, identifier, fields),
+            // formSchema: {
+            //     ...state.formSchema,
+            //     properties: {
+            //         ...state.formSchema.properties,
+            //         ...fields,
+            //     },
+            // },
         })),
     clearAllFields: () =>
         set(() => ({

@@ -7,7 +7,10 @@ import { fieldTypes } from '../../utils/fieldTypes'
 import Modal, { ModalProps } from '../../modal/Modal'
 
 
-const SelectionModal = ({ id, params, type }: ModalInterface) => {
+const SelectionModal = ({ id, params: { blockIdentifierType, blockIdentifier } }: ModalInterface) => {
+
+    console.log("blockIdentifierType", blockIdentifierType);
+    console.log("blockIdentifier", blockIdentifier);
 
     const { addField } = useStore();
 
@@ -53,9 +56,11 @@ const SelectionModal = ({ id, params, type }: ModalInterface) => {
             }
 
             try {
-                addField({
-                    [identifier]: fieldTypes.find((field) => field.value === selectedOption)?.factory()
-                });
+                addField(
+                    blockIdentifierType,
+                    blockIdentifier,
+                    { [identifier]: fieldTypes.find((field) => field.value === selectedOption)?.factory() }
+                );
                 resolve();
             } catch (err) {
                 reject(err);
@@ -78,6 +83,8 @@ const SelectionModal = ({ id, params, type }: ModalInterface) => {
             <Modal key={id} {...modalProps} >
                 <div className='p-1 my-2'>
                     <h3 className="font-medium leading-6 text-gray-900">Set Field identifier</h3>
+                    <p className="mt-1 text-sm text-gray-500">{blockIdentifierType}</p>
+                    <p className="mt-1 text-sm text-gray-500">{blockIdentifier}</p>
                     {/* identifier input  */}
                     <div className="mt-2">
                         <input type="text" name="identifier" id="identifier" placeholder="Identifier name"

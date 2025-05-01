@@ -1,16 +1,22 @@
 import { useModal } from '../modal/context';
 
-function CreateFieldButton() {
+type CreateFieldButtonProps = {
+    blockIdentifierType: "root" | "block";
+    blockIdentifier?: string;
+}
+function CreateFieldButton({ blockIdentifierType, blockIdentifier }: CreateFieldButtonProps) {
     const { pushModal } = useModal();
 
     const onSubmit = () => {
-        pushModal({ type: 'createField' });
+        pushModal({ type: 'createField', params: { blockIdentifierType, blockIdentifier } });
     }
 
     return (
-        <button onClick={onSubmit} className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-            Create Field
-        </button>
+        <div className='flex items-center justify-around my-1'>
+            <button onClick={onSubmit} className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Create Field
+            </button>
+        </div>
     )
 }
 
