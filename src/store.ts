@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { create } from 'zustand';
 import { FormFateProps } from 'react-form-fate';
-import { updateSchema } from './utils/schemaUpdator';
+import { deleteProperty, updateSchema } from './utils/schemaUpdator';
 import { FormDefinition } from 'formfatecore';
 
 interface SystemStore {
     formSchema: FormFateProps['formDefinition'];
     setFormSchema: (formSchema: FormFateProps['formDefinition']) => void;
     addField: (identifierType: string, identifier: string, fields: FormDefinition['properties']) => void;
+    removeField: (fieldName: string) => void;
 }
 
 const useStore = create<SystemStore>()((set) => ({
@@ -97,13 +98,8 @@ const useStore = create<SystemStore>()((set) => ({
         })),
     removeField: (fieldName: string) =>
         set((state) => {
-            const { [fieldName]: _, ...rest } = state.formSchema.properties;
-            return {
-                formSchema: {
-                    ...state.formSchema,
-                    properties: rest,
-                },
-            };
+            const updatedSchema = deleteProperty(state.formSchema, fieldName);
+            return { formSchema: updatedSchema };
         }),
 }));
 

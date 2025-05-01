@@ -10,7 +10,7 @@ function recursiveUpdate(properties: FormDefinition["properties"], identifier: s
                 ...newObjects,
             }
             properties[prop].properties = a
-            
+
             console.log("properties[prop]", properties[prop]);
             return true;
         } else if (properties[prop].type === 'block' && properties[prop].properties) {
@@ -39,5 +39,34 @@ export function updateSchema(schema: FormDefinition, identifierType: string, ide
             }
         }
 
+    return schema;
+}
+
+
+function recursiveDelete(properties: FormDefinition["properties"], identifier: string): boolean {
+    if (!properties) return false;
+
+    if (properties.hasOwnProperty(identifier)) {
+        delete properties[identifier];
+        return true;
+    }
+
+    for (let prop in properties) {
+        if (properties[prop].type === 'block' && properties[prop].properties) {
+            const deleted = recursiveDelete(properties[prop].properties, identifier);
+            if (deleted) return true;
+        }
+    }
+
+    return false;
+}
+
+export function deleteProperty(schema: FormDefinition, identifier: string): FormDefinition {
+    if (schema.properties) {
+        const deleted = recursiveDelete(schema.properties, identifier);
+        if (!deleted) {
+            console.warn(`Property "${identifier}" not found in schema.`);
+        }
+    }
     return schema;
 }
