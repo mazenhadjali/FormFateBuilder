@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { ModalContext } from './context';
 import SelectionModal from '../components/modals/SelectionModal';
+import JsonPreviewModal from '../components/modals/JSONPreviewModal';
 
 
 
@@ -16,6 +17,12 @@ const ModalContainer: React.FC = () => {
             return (
                 <React.Suspense fallback={<div>Loading...</div>}>
                     <SelectionModal key={id} id={id} params={params} type={type} />
+                </React.Suspense>
+            );
+        case 'jsonPreview':
+            return (
+                <React.Suspense fallback={<div>Loading...</div>}>
+                    <JsonPreviewModal key={id} id={id} params={params} type={type} />
                 </React.Suspense>
             );
         default:

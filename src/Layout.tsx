@@ -2,6 +2,7 @@ import { FormFate } from "react-form-fate";
 import useStore from "./store";
 import CreateFieldButton from "./components/CreateFieldButton";
 import FieldsUIMapper from "./components/FieldsUIMapper";
+import SchemaPreviewButton from "./components/SchemaPreviewButton";
 
 function Layout() {
     const { formSchema } = useStore();
@@ -38,7 +39,11 @@ function Layout() {
             <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Configuration Panel */}
                 <div className="rounded-2xl shadow-lg p-6 bg-white/70 backdrop-blur-md border border-amber-300">
-                    <h2 className="text-2xl font-semibold text-gray-800 mb-4">Form Configuration</h2>
+                    <div className="flex justify-between items-center my-1">
+                        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Form Configuration</h2>
+                        <SchemaPreviewButton />
+
+                    </div>
                     <p className="text-gray-700 text-base mb-2">
                         Add, edit, and delete fields to customize your form.
                     </p>

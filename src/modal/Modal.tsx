@@ -35,11 +35,22 @@ function Modal({ close, submit, cancel, title, Icon, children }: ModalProps) {
                         <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-5xl">
 
                             <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                                <div className='flex gap-2 items-center'>
-                                    <div className="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full bg-gray-100 sm:mx-0 sm:size-10">
-                                        {Icon && <Icon className="h-6 w-6 text-indigo-500" aria-hidden="true" />}
+                                <div className='flex items-center justify-between'>
+                                    <div className='flex gap-2 items-center justify-start'>
+                                        <span className='bg-gray-100 rounded-full p-2'>{Icon && <Icon className="h-6 w-6 text-indigo-500" aria-hidden="true" />}</span>
+                                        <h3 className="text-base font-semibold text-gray-900" id="modal-title">{title}</h3>
                                     </div>
-                                    <h3 className="text-base font-semibold text-gray-900" id="modal-title">{title}</h3>
+                                    {/* X close button */}
+                                    <button
+                                        type="button"
+                                        className="p-2 text-gray-400 hover:text-gray-500 rounded-full hover:bg-gray-100"
+                                        onClick={() => { if (close?.onClose) close?.onClose(); closeModal(); }}
+                                        aria-label="Close"
+                                    >
+                                        <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
                                 </div>
                                 <div className=" p-1">
                                     {children}

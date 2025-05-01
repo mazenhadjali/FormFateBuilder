@@ -5,10 +5,13 @@ function recursiveUpdate(properties: FormDefinition["properties"], identifier: s
     for (let prop in properties) {
         if (prop === identifier && properties[prop].type === 'block') {
             // We found the parent block; now merge its properties
-            properties[prop].properties = {
+            const a = {
                 ...properties[prop].properties,
                 ...newObjects,
-            };
+            }
+            properties[prop].properties = a
+            
+            console.log("properties[prop]", properties[prop]);
             return true;
         } else if (properties[prop].type === 'block' && properties[prop].properties) {
             // Recurse into nested block

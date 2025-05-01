@@ -20,6 +20,12 @@ const useStore = create<SystemStore>()((set) => ({
                 placeholder: 'Enter your first name',
                 default: '',
                 required: true,
+                validator: (value) => {
+                    if (value.length < 3) {
+                        return 'First name must be at least 3 characters long.';
+                    }
+                    return true;
+                }
             },
             lastName: {
                 type: 'text',
