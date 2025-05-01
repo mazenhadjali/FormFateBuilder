@@ -9,9 +9,6 @@ import Modal, { ModalProps } from '../../modal/Modal'
 
 const SelectionModal = ({ id, params: { blockIdentifierType, blockIdentifier } }: ModalInterface) => {
 
-    console.log("blockIdentifierType", blockIdentifierType);
-    console.log("blockIdentifier", blockIdentifier);
-
     const { addField } = useStore();
 
     const [selectedOption, setSelectedOption] = useState<string | null>(null);

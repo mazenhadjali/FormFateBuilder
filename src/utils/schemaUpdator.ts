@@ -1,6 +1,7 @@
 import { FormDefinition } from "formfatecore";
 
 function recursiveUpdate(properties: FormDefinition["properties"], identifier: string, newObjects: FormDefinition["properties"]) {
+    console.log("newObjects", newObjects);
     for (let prop in properties) {
         if (prop === identifier && properties[prop].type === 'block') {
             // We found the parent block; now merge its properties
