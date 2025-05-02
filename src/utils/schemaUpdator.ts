@@ -1,7 +1,6 @@
 import { FormDefinition } from "formfatecore";
 
 function recursiveUpdate(properties: FormDefinition["properties"], identifier: string, newObjects: FormDefinition["properties"]) {
-    console.log("newObjects", newObjects);
     for (let prop in properties) {
         if (prop === identifier && properties[prop].type === 'block') {
             // We found the parent block; now merge its properties
@@ -99,4 +98,46 @@ function recursiveGet(properties: FormDefinition["properties"], identifier: stri
 
 export function getField(schema: FormDefinition, identifier: string, isBlock: boolean): FormDefinition["properties"][string] | undefined {
     return recursiveGet(schema.properties, identifier, isBlock);
+}
+
+function recursiveFieldUpdate(
+    properties: FormDefinition["properties"],
+    identifier: string,
+    newObject: FormDefinition["properties"][string]
+): boolean {
+    if (!properties) return false;
+
+    for (const key of Object.keys(properties)) {
+        const field = properties[key];
+
+        if (key === identifier) {
+            // Update the field directly
+            properties[key] = {
+                ...field,
+                ...newObject,
+            };
+            return true;
+        }
+
+        if (field.type === 'block' && field.properties) {
+            const updated = recursiveFieldUpdate(field.properties, identifier, newObject);
+            if (updated) return true;
+        }
+    }
+
+    return false;
+}
+
+export function updateField(
+    schema: FormDefinition,
+    identifier: string,
+    newObject: FormDefinition["properties"][string]
+): FormDefinition {
+    if (schema.properties) {
+        const updated = recursiveFieldUpdate(schema.properties, identifier, newObject);
+        if (!updated) {
+            console.warn(`Field "${identifier}" not found in schema.`);
+        }
+    }
+    return schema;
 }

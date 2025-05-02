@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.2.3",
     "@tailwindcss/vite": "^4.1.4",
+    "@uiw/react-codemirror": "^4.23.12",
     "clsx": "^2.1.1",
     "formfatecore": "^0.12.2",
     "js-beautify": "^1.15.4",

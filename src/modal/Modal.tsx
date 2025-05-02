@@ -62,7 +62,7 @@ function Modal({ close, submit, cancel, title, Icon, children }: ModalProps) {
                                     <button
                                         type="button"
                                         onClick={async () => { if (submit?.onSubmit) submit?.onSubmit().then(() => closeModal()); }}
-                                        className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:w-auto"
+                                        className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:w-auto"
                                     >
                                         {submit?.label}
                                     </button>

@@ -3,7 +3,7 @@ import { ModalInterface } from '../../modal/context'
 import { BiPlus } from 'react-icons/bi'
 import useStore from '../../store'
 import Modal, { ModalProps } from '../../modal/Modal'
-import { js_beautify } from 'js-beautify';
+import { stringifyWithFunctions } from '../../utils/serialazation'
 
 const JsonPreviewModal = ({ id }: ModalInterface) => {
     const { formSchema } = useStore();
@@ -33,24 +33,7 @@ const JsonPreviewModal = ({ id }: ModalInterface) => {
     //     return js_beautify(jsFormatted, { indent_size: 2 });
     // }
 
-    function stringifyWithFunctions(obj: any): string {
-        const jsonWithFunctions = JSON.stringify(obj, (key, value) => {
-            if (typeof value === 'function') {
-                return value.toString();
-            }
-            return value;
-        }, 2);
 
-        const jsFormatted = jsonWithFunctions
-            .replace(/"([^"]+)":/g, '$1:') // remove quotes from keys
-            .replace(/"(function[\\s\\S]*?}|\\(.*?\\)\\s*=>\\s*{[\\s\\S]*?})"/g, (_, fn) =>
-                fn.replace(/\\"/g, '"').replace(/\\n/g, '\n')
-            ) // unquote and clean functions
-            .replace(/\\n/g, '\n') // turn \n into real newlines
-            .replace(/\\"/g, '"'); // unescape double quotes
-
-        return js_beautify(jsFormatted, { indent_size: 2 });
-    }
 
     return (
         <React.Fragment>
@@ -59,7 +42,7 @@ const JsonPreviewModal = ({ id }: ModalInterface) => {
                     {formSchema && (
                         <div className='overflow-x-auto'>
                             <pre className='overflow-x-auto'>
-                                {JSON.stringify(stringifyWithFunctions(formSchema))}
+                                {stringifyWithFunctions(formSchema)}
                             </pre>
                         </div>
                     )}
