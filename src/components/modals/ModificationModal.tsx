@@ -10,6 +10,8 @@ import RequiredField from '../settings/RequiredField'
 import DefaultField from '../settings/DefaultField'
 import ValidatorField from '../settings/ValidatorField'
 import { stringifyWithFunctions } from '../../utils/serialazation'
+import ClassNameField from '../settings/ClassNameField'
+import OptionsField from '../settings/OptionsField'
 
 const ModificationModal = ({ id, params: { identifier, identifierType } }: ModalInterface) => {
     const { formSchema, updateField } = useStore();
@@ -37,6 +39,8 @@ const ModificationModal = ({ id, params: { identifier, identifierType } }: Modal
                     <PlaceholderField field={field} setField={setField} />
                     <RequiredField field={field} setField={setField} />
                     <DefaultField field={field} setField={setField} />
+                    <ClassNameField field={field} setField={setField} />
+                    {(field.type === "select" || field.type === "radio") && <OptionsField field={field} setField={setField} />}
                     <ValidatorField field={field} setField={setField} />
 
                 </div>

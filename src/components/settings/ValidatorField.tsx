@@ -1,6 +1,6 @@
 // ValidatorField.tsx
 import React, { useState } from 'react';
-import CodeEditor from '../CodeEditor';
+import CodeEditor from './CodeEditor';
 
 interface Props {
     field: { validator?: (value: string) => boolean | string };

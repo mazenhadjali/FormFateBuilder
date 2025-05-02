@@ -3,9 +3,15 @@ import useStore from "./store";
 import CreateFieldButton from "./components/CreateFieldButton";
 import FieldsUIMapper from "./components/FieldsUIMapper";
 import SchemaPreviewButton from "./components/SchemaPreviewButton";
+import { useEffect } from "react";
 
 function Layout() {
     const { formSchema } = useStore();
+
+    useEffect(() => {
+      console.log("Form Schema Updated:", formSchema);
+    }, [formSchema])
+    
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-green-100 to-pink-50 py-10 px-4">
@@ -62,7 +68,7 @@ function Layout() {
                         <p className="text-gray-700 text-base mb-4">
                             Live preview of your form below.
                         </p>
-                        <div className="border border-gray-300 rounded-xl p-6 bg-gray-50">
+                        <div className="border border-gray-300 rounded-xl py-4 px-2 bg-gray-50">
                             <FormFate
                                 formDefinition={formSchema}
                                 onSubmit={(formData) => {
