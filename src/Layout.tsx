@@ -3,15 +3,9 @@ import useStore from "./store";
 import CreateFieldButton from "./components/CreateFieldButton";
 import FieldsUIMapper from "./components/FieldsUIMapper";
 import SchemaPreviewButton from "./components/SchemaPreviewButton";
-import { useEffect } from "react";
 
 function Layout() {
     const { formSchema } = useStore();
-
-    useEffect(() => {
-        console.log("Form Schema Updated:", formSchema);
-    }, [formSchema])
-
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-green-100 to-pink-50 py-10 px-4">

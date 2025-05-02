@@ -80,13 +80,6 @@ const useStore = create<SystemStore>()((set) => ({
     addField: (identifierType, identifier, fields) =>
         set((state) => ({
             formSchema: updateSchema(state.formSchema, identifierType, identifier, fields),
-            // formSchema: {
-            //     ...state.formSchema,
-            //     properties: {
-            //         ...state.formSchema.properties,
-            //         ...fields,
-            //     },
-            // },
         })),
     clearAllFields: () =>
         set(() => ({

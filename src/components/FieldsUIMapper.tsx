@@ -16,7 +16,7 @@ function FieldsUIMapper({ schema }: Props) {
 
             if (value.type === 'block') {
                 return (
-                    <div key={key} className="p-4 border rounded mb-4 bg-gray-50">
+                    <div key={key} className="p-4 border rounded mb--4 ">
                         <div className="flex justify-between items-center">
                             <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
                             <label className="block text-sm font-medium mb-1" htmlFor={key}>
@@ -24,7 +24,7 @@ function FieldsUIMapper({ schema }: Props) {
                             </label>
                         </div>
                         {value.description && (<p className="text-sm text-gray-600 mb-2">{value.description}</p>)}
-                        <div className="flex justify-end items-center p-2">
+                        <div className="flex justify-end items-center p-2 gap-1">
                             <DeleteFieldButton identifier={key} identifierType='block' />
                             <CreateFieldButton blockIdentifierType='block' blockIdentifier={key} />
                         </div>

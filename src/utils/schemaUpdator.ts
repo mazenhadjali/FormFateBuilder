@@ -70,3 +70,33 @@ export function deleteProperty(schema: FormDefinition, identifier: string): Form
     }
     return schema;
 }
+
+
+function recursiveGet(properties: FormDefinition["properties"], identifier: string, isBlock: boolean): FormDefinition["properties"][string] | undefined {
+    if (!properties) return undefined;
+
+    for (const key of Object.keys(properties)) {
+        const field = properties[key];
+
+        // Found a direct match?
+        if (key === identifier) {
+            // Only return if the `block`-ness matches what was requested
+            if (isBlock ? field.type === 'block' : field.type !== 'block') {
+                return field;
+            }
+        }
+
+        // Otherwise, if this is a block, recurse into it
+        if (field.type === 'block' && field.properties) {
+            const found = recursiveGet(field.properties, identifier, isBlock);
+            if (found) return found;
+        }
+    }
+
+    return undefined;
+}
+
+
+export function getField(schema: FormDefinition, identifier: string, isBlock: boolean): FormDefinition["properties"][string] | undefined {
+    return recursiveGet(schema.properties, identifier, isBlock);
+}

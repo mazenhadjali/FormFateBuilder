@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { ModalContext } from './context';
 import SelectionModal from '../components/modals/SelectionModal';
 import JsonPreviewModal from '../components/modals/JSONPreviewModal';
+import ModificationModal from '../components/modals/ModificationModal';
 
 
 
@@ -23,6 +24,12 @@ const ModalContainer: React.FC = () => {
             return (
                 <React.Suspense fallback={<div>Loading...</div>}>
                     <JsonPreviewModal key={id} id={id} params={params} type={type} />
+                </React.Suspense>
+            );
+        case 'updateField':
+            return (
+                <React.Suspense fallback={<div>Loading...</div>}>
+                    <ModificationModal key={id} id={id} params={params} type={type} />
                 </React.Suspense>
             );
         default:
