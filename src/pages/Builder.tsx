@@ -1,9 +1,9 @@
 import React from "react";
-import Layout from "./Layout";
-import { ModalProvider } from "./modal/Provider.modal";
+import Layout from "../Layout";
+import { ModalProvider } from "../modal/Provider.modal";
 
 
-function App() {
+function Builder() {
 
   return (
     <React.Fragment>
@@ -14,4 +14,4 @@ function App() {
   );
 }
 
-export default App;
+export default Builder;
