@@ -13,26 +13,18 @@ function Builder() {
   return (
     <React.Fragment>
       <ModalProvider>
-        <div className="min-h-screen bg-gradient-to-br from-green-100 to-pink-50 py-10 px-4">
-          {/* Logo Section */}
-          <div className="flex justify-center mb-6">
-            <img
-              src="/Logo-Proxym-2020-02.png"
-              alt="Proxym"
-              className="h-20 object-contain"
-            />
-          </div>
+        <div className="bg-gradient-to-br from-green-100 to-pink-50 py-3 px-1">
 
           {/* Title */}
-          <h1 className="text-3xl md:text-4xl font-bold text-center text-orange-500 mb-4">
-            Form Fate Builder
+          <h1 className="text-2xl md:text-4xl font-bold text-center text-orange-500 mb-4">
+            Form Fate Builder Tool
           </h1>
 
           {/* Intro Card */}
           <div className="container mx-auto mb-8">
             <div className="rounded-2xl shadow-xl p-6 bg-white/20 backdrop-blur-md border border-amber-400 text-center">
               <p className="text-gray-800 text-lg mb-2">
-                Welcome to the Form Fate Builder for Proxym.
+                Welcome to the Form Fate Builder Tool.
               </p>
               <p className="text-gray-700 text-base">
                 Create, customize, and preview your forms easily to integrate into your applications.
