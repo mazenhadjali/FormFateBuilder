@@ -2,9 +2,7 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 
-type Props = {}
-
-function Dashboard({ }: Props) {
+function Dashboard() {
     return (
         <React.Fragment>
             {/* navbar and main that contaons the Outlet */}

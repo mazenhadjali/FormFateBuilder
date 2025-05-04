@@ -1,55 +1,46 @@
-import React from 'react'
-import { ModalInterface } from '../../modal/context'
-import { BiPlus } from 'react-icons/bi'
-import useStore from '../../store'
-import Modal, { ModalProps } from '../../modal/Modal'
-import { stringifyWithFunctions } from '../../utils/serialazation'
+import React, { useState } from 'react';
+import { ModalInterface } from '../../modal/context';
+import { BiPlus, BiCopy } from 'react-icons/bi';
+import useStore from '../../store';
+import Modal, { ModalProps } from '../../modal/Modal';
+import { stringifyWithFunctions } from '../../utils/serialazation';
 
 const JsonPreviewModal = ({ id }: ModalInterface) => {
     const { formSchema } = useStore();
+    const [copied, setCopied] = useState(false);
+
+    const handleCopy = () => {
+        if (formSchema) {
+            navigator.clipboard.writeText(stringifyWithFunctions(formSchema));
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        }
+    };
 
     const modalProps: ModalProps = {
-        close: { label: "Close", hidden: false },
-        submit: { label: "Submit", hidden: true },
+        close: { label: 'Close', hidden: false },
+        submit: { label: 'Submit', hidden: true },
         cancel: { hidden: true },
-        title: "Add New Field",
+        title: 'Add New Field',
         Icon: BiPlus,
-    }
-
-    // function stringifyWithFunctions(obj: any): string {
-    //     const jsonWithFunctions = JSON.stringify(obj, (key, value) => {
-    //         if (typeof value === 'function') {
-    //             return value.toString();
-    //         }
-    //         return value;
-    //     }, 2);
-
-    //     const jsFormatted = jsonWithFunctions
-    //         .replace(/"([^"]+)":/g, '$1:') // remove quotes from keys
-    //         .replace(/"(function[^\"]*)"/gs, (_, fn) => fn.replace(/\\"/g, '"').replace(/\\n/g, '\n')) // unquote and cleanup functions
-    //         .replace(/\\n/g, '\n')         // turn \n into real newlines
-    //         .replace(/\\"/g, '"');         // unescape double quotes
-
-    //     return js_beautify(jsFormatted, { indent_size: 2 });
-    // }
-
-
+    };
 
     return (
-        <React.Fragment>
-            <Modal key={id} {...modalProps}>
-                <div className='p-1 my-2'>
-                    {formSchema && (
-                        <div className='overflow-x-auto'>
-                            <pre className='overflow-x-auto'>
-                                {stringifyWithFunctions(formSchema)}
-                            </pre>
-                        </div>
-                    )}
-                </div>
-            </Modal>
-        </React.Fragment>
-    )
-}
+        <Modal key={id} {...modalProps}>
+            <div className="flex justify-end mb-2">
+                <button
+                    onClick={handleCopy}
+                    className="flex items-center gap-1 px-3 py-1 text-sm bg-gray-200 rounded hover:bg-gray-300"
+                >
+                    <BiCopy className="w-4 h-4" />
+                    {copied ? 'Copied!' : 'Copy JSON'}
+                </button>
+            </div>
+            <pre className="bg-gray-100 p-2 rounded max-h-[60vh] overflow-auto text-sm">
+                {formSchema ? stringifyWithFunctions(formSchema) : 'No schema available'}
+            </pre>
+        </Modal>
+    );
+};
 
-export default JsonPreviewModal
+export default JsonPreviewModal;

@@ -6,7 +6,7 @@ import ErrorBoundary from '../components/ErrorBoundary';
 function Renderer() {
 
     const [schema, setSchema] = useState("");
-    const [parsedSchema, setParsedSchema] = useState<any>(null);
+    const [parsedSchema, setParsedSchema] = useState<Record<string, unknown> | null>(null);
     const [schemaError, setSchemaError] = useState<string>("");
 
     const handleSchemaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -16,9 +16,9 @@ function Renderer() {
             const parsed = deserializeWithFunctions(value);
             setParsedSchema(parsed);
             setSchemaError(""); // clear error if successful
-        } catch (error: any) {
+        } catch (error: unknown) {
             setParsedSchema(null);
-            setSchemaError(error.message || "Invalid schema format");
+            setSchemaError(error?.message ? error?.message.toString() : "Invalid schema format. Please check your JSON Schema.");
         }
     };
 
