@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { FormFate } from 'react-form-fate';
 import { deserializeWithFunctions } from '../utils/serialazation';
 import ErrorBoundary from '../components/ErrorBoundary';
+import FormFateFactory from '../components/formFactory';
 
 function Renderer() {
 
@@ -56,7 +56,7 @@ function Renderer() {
                                         <strong>⚠️ Error rendering form:</strong> Please check your schema.
                                     </div>
                                 }>
-                                    <FormFate formDefinition={parsedSchema} key={"FormFate" + Date.now()} />
+                                    <FormFateFactory formDefinition={parsedSchema} key={"FormFate" + Date.now()} />
                                 </ErrorBoundary>
                             )}
                         </div>

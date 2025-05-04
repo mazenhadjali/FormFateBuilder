@@ -69,5 +69,5 @@ export function createTextAreaField(): textAreaFieldInterface {
     return { type: 'textarea', placeholder: 'Enter text', title: 'Text Area Field', required: false };
 }
 export function createBlockField(): blockFieldInterface {
-    return { type: 'block', title: 'Block Field' , properties: {} };
+    return { type: 'block', title: 'Block Field', properties: {} };
 }

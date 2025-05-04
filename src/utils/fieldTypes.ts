@@ -1,48 +1,50 @@
+import { customFieldsTypes } from "../components/formFactory/components";
 import { createBlockField, createDataUrlField, createDateField, createEmailField, createRadioField, createSelectField, createSimpleNumberField, createSimplePasswordField, createSimpleTextField, createTextAreaField, createTimeField } from "./fieldFactories";
 
 export const fieldTypes = [
     {
-        label: "Text", value: "text",
+        label: "Text", type: "text",
         factory: () => createSimpleTextField()
     },
     {
-        label: "Radio", value: "radio",
+        label: "Radio", type: "radio",
         factory: () => createRadioField()
     },
     {
-        label: "Select", value: "select",
+        label: "Select", type: "select",
         factory: () => createSelectField()
     },
     {
-        label: "Textarea", value: "textarea",
+        label: "Textarea", type: "textarea",
         factory: () => createTextAreaField()
     },
     {
-        label: "Number", value: "number",
+        label: "Number", type: "number",
         factory: () => createSimpleNumberField()
     },
     {
-        label: "Date", value: "date",
+        label: "Date", type: "date",
         factory: () => createDateField()
     },
     {
-        label: "Time", value: "time",
+        label: "Time", type: "time",
         factory: () => createTimeField()
     },
     {
-        label: "URL", value: "url",
+        label: "URL", type: "url",
         factory: () => createDataUrlField()
     },
     {
-        label: "Email", value: "email",
+        label: "Email", type: "email",
         factory: () => createEmailField()
     },
     {
-        label: "Password", value: "password",
+        label: "Password", type: "password",
         factory: () => createSimplePasswordField()
     },
     {
-        label: "Block", value: "block",
+        label: "Block", type: "block",
         factory: () => createBlockField()
-    }
+    },
+    ...customFieldsTypes
 ]

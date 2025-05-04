@@ -10,6 +10,7 @@ type Props = {
 
 
 function FieldsUIMapper({ schema }: Props) {
+    console.log('FieldsUIMapper', schema);
 
     const renderFields = (properties: Record<string, FormDefinition['properties']>): React.ReactNode => {
         return Object.entries(properties).map(([key, value]) => {

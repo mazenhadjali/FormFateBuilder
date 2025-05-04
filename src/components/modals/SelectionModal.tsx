@@ -56,7 +56,7 @@ const SelectionModal = ({ id, params: { blockIdentifierType, blockIdentifier } }
                 addField(
                     blockIdentifierType,
                     blockIdentifier,
-                    { [identifier]: fieldTypes.find((field) => field.value === selectedOption)?.factory() }
+                    { [identifier]: fieldTypes.find((field) => field.type === selectedOption)?.factory() }
                 );
                 resolve();
             } catch (err) {
@@ -102,11 +102,11 @@ const SelectionModal = ({ id, params: { blockIdentifierType, blockIdentifier } }
                     { "border-gray-200": !errors.typeSelected }
                 )}>
                     {
-                        fieldTypes.map(({ label, value }, index) => (
+                        fieldTypes.map(({ label, type }, index) => (
                             <div key={index} className="flex items-center ps-4 border border-gray-200 rounded-sm dark:border-gray-700">
-                                <input id={"radio-element-" + index} type="radio" value={value} name="bordered-radio"
-                                    checked={selectedOption === value}
-                                    onChange={() => setSelectedOption(value)}
+                                <input id={"radio-element-" + index} type="radio" value={type} name="bordered-radio"
+                                    checked={selectedOption === type}
+                                    onChange={() => setSelectedOption(type)}
                                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-2"
                                 />
                                 <label htmlFor={"radio-element-" + index} className="w-full py-4 ms-2 text-sm font-medium text-gray-900 capitalize">{label}</label>

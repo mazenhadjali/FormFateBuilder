@@ -1,10 +1,10 @@
 import React from "react";
 import { ModalProvider } from "../modal/Provider.modal";
 import useStore from "../store";
-import { FormFate } from "react-form-fate";
 import CreateFieldButton from "../components/CreateFieldButton";
 import FieldsUIMapper from "../components/FieldsUIMapper";
 import SchemaPreviewButton from "../components/SchemaPreviewButton";
+import FormFateFactory from "../components/formFactory";
 
 function Builder() {
 
@@ -69,7 +69,7 @@ function Builder() {
                   Live preview of your form below.
                 </p>
                 <div className="border border-gray-300 rounded-xl py-4 px-2 bg-gray-50">
-                  <FormFate
+                  <FormFateFactory
                     key={'form' + Date.now()}
                     formDefinition={formSchema}
                     onSubmit={(formData) => {
