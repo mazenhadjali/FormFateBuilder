@@ -16,6 +16,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onSave }) => {
         // A simple formatter for better readability
         try {
             // Remove extra whitespace, add basic indentations and handle newlines
+            console.log('Formatting code:', code); // Debugging line
             return code
                 .replace(/( )+/g, ' ') // Collapsing extra spaces
                 .replace(/\s*({|}|,|\(|\))/g, '$1') // Removing extra spaces around braces, commas, and parentheses
@@ -51,19 +52,18 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onSave }) => {
                     autocompletion: true,
                 }}
             />
-            <span>{'}'}</span>
             <div className="mt-2 flex justify-between">
                 <button
                     onClick={handleFormat}
-                    className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition"
+                    className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition font-semibold"
                 >
                     Format Code
                 </button>
                 <button
                     onClick={handleSave}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold"
                 >
-                    Save
+                    Save Code
                 </button>
             </div>
         </div>
