@@ -1,1 +1,7 @@
 @import "tailwindcss";
+@keyframes colorcycle {
+    0%   { color: #ef4444; } /* red-500 */
+    33%  { color: #facc15; } /* yellow-500 */
+    66%  { color: #22c55e; } /* green-500 */
+    100% { color: #ef4444; } /* loop back to red */
+  }

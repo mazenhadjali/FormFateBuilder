@@ -10,7 +10,6 @@ function recursiveUpdate(properties: FormDefinition["properties"], identifier: s
             }
             properties[prop].properties = a
 
-            console.log("properties[prop]", properties[prop]);
             return true;
         } else if (properties[prop].type === 'block' && properties[prop].properties) {
             // Recurse into nested block

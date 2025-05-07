@@ -27,7 +27,6 @@ const FilterField: React.FC<Props> = ({ field, setField }) => {
 
     const handleSave = (formattedCode: string) => {
         try {
-            console.log('Formatted Code:', formattedCode); // Debugging line
             const filterFunction = new Function('{options, formValues}', formattedCode);
             setField({ ...field, filterFunction });
         } catch (error: any) {

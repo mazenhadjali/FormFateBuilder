@@ -3,13 +3,13 @@
 /**
  * Serializes an object, converting functions to string form.
  */
-export function stringifyWithFunctions(obj: any): string {
+export function stringifyWithFunctions(obj: any, space: number = 0): string {
     return JSON.stringify(obj, (key, value) => {
         if (typeof value === 'function') {
             return value.toString();
         }
         return value;
-    }, 2);
+    }, space);
 }
 
 /**

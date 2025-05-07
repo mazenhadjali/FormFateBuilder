@@ -24,8 +24,6 @@ const SelectionModal = ({ id, params: { blockIdentifierType, blockIdentifier } }
     const addSelectedField = () => {
         return new Promise<void>((resolve, reject) => {
             const identifier: string = identifierRef.current?.value || "";
-            console.log(identifier);
-
             let hasError = false;
             const newErrors: Record<string, boolean> = { ...errors };
 

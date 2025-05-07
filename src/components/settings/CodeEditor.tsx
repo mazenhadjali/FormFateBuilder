@@ -15,8 +15,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onSave }) => {
     const customFormat = (code: string) => {
         // A simple formatter for better readability
         try {
-            // Remove extra whitespace, add basic indentations and handle newlines
-            console.log('Formatting code:', code); // Debugging line
             return code
                 .replace(/( )+/g, ' ') // Collapsing extra spaces
                 .replace(/\s*({|}|,|\(|\))/g, '$1') // Removing extra spaces around braces, commas, and parentheses
