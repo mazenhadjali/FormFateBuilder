@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import api from '../../utils/axiosInstance';
+import { Link } from 'react-router';
+import { ACCOUNT, SIGNUP } from '../../routes.ts';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -14,14 +16,19 @@ function Login() {
 
         try {
             const response = await api.post('users/login', { email, password });
-            localStorage.setItem('token', response.data.token);
+            const { token } = response.data;
+            await localStorage.setItem('token', token);
+            window.location.href = ACCOUNT;
         } catch (err: any) {
             console.error('Login error:', err);
-            setError(err.response?.data?.message || 'Login failed');
+            // If the API sent a message, use it; otherwise, fallback
+            setError(err.response?.data?.message ?? 'Login failed');
         } finally {
+            // 5️⃣ Always turn loading off at the end
             setLoading(false);
         }
     };
+
 
     return (
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -84,9 +91,9 @@ function Login() {
 
                 <p className="mt-10 text-center text-sm text-gray-500">
                     Not a member?{' '}
-                    <a href="/account/signup" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                    <Link to={SIGNUP} className="font-semibold text-indigo-600 hover:text-indigo-500">
                         Create a new account
-                    </a>
+                    </Link>
                 </p>
             </div>
         </div>

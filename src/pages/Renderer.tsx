@@ -4,13 +4,13 @@ import api from '../utils/axiosInstance';
 import { deserializeWithFunctions } from '../utils/serialazation';
 import ErrorBoundary from '../components/ErrorBoundary';
 import FormFateFactory from '../components/formFactory';
-import Loader from '../components/Loader'; // <-- assuming this is your loader component
+import Loader from '../components/Loader';
 
 function Renderer() {
     const [schema, setSchema] = useState("");
     const [parsedSchema, setParsedSchema] = useState<Record<string, unknown> | null>(null);
     const [schemaError, setSchemaError] = useState<string>("");
-    const [loading, setLoading] = useState<boolean>(false); // <-- new loading state
+    const [loading, setLoading] = useState<boolean>(false);
     const [searchParams] = useSearchParams();
 
     // Handle manual textarea input

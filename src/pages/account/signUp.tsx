@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import api from '../../utils/axiosInstance';
+import { Link } from 'react-router';
+import { ACCOUNT, LOGIN } from '../../routes';
 
 function Signup() {
     const [username, setUsername] = useState('');
@@ -28,6 +30,7 @@ function Signup() {
         try {
             const response = await api.post('users/signup', { username, email, password });
             localStorage.setItem('token', response.data.token);
+            window.location.href = ACCOUNT;
         } catch (err: any) {
             console.error('Signup error:', err);
             setError(err.response?.data?.message || 'Signup failed');
@@ -86,7 +89,7 @@ function Signup() {
                             id="password"
                             autoComplete="new-password"
                             required
-                            className="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                            className="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             disabled={loading}
@@ -102,7 +105,7 @@ function Signup() {
                             id="reenterPassword"
                             autoComplete="new-password"
                             required
-                            className="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                            className="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
                             value={reenterPassword}
                             onChange={(e) => setReenterPassword(e.target.value)}
                             disabled={loading}
@@ -122,9 +125,9 @@ function Signup() {
 
                 <p className="mt-10 text-center text-sm text-gray-500">
                     Already have an account?{' '}
-                    <a href="/account/login" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                    <Link to={LOGIN} className="font-semibold text-indigo-600 hover:text-indigo-500">
                         Sign in
-                    </a>
+                    </Link>
                 </p>
             </div>
         </div>

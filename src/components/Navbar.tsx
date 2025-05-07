@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import { FaBars } from 'react-icons/fa6';
 import { IoMdClose } from 'react-icons/io';
 import useAuthStore from '../userStore';
+import Loader from './Loader';
 
 type NavLink = {
     label: string;
@@ -24,17 +25,8 @@ const Navbar: React.FC<Props> = ({ links = defaultLinks }) => {
     const location = useLocation();
 
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+    const loading = useAuthStore((state) => state.loading);
     const user = useAuthStore((state) => state.user);
-
-    const [loading, setLoading] = useState(true);
-
-    // Simulate loading (optional: can use real fetch status)
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setLoading(false); // Ends loading after a short delay
-        }, 500); // You can adjust/remove if you already have async loading in Dashboard
-        return () => clearTimeout(timer);
-    }, [isAuthenticated, user]);
 
     return (
         <nav className="bg-gray-800">
@@ -91,9 +83,7 @@ const Navbar: React.FC<Props> = ({ links = defaultLinks }) => {
                     <div className="hidden sm:ml-6 sm:block">
                         <div className="flex space-x-4">
                             {loading ? (
-                                <div className="text-gray-300 px-3 py-2 text-sm font-medium animate-pulse">
-                                    Loading...
-                                </div>
+                                <Loader />
                             ) : isAuthenticated && user ? (
                                 <Link
                                     to="/account"
@@ -169,9 +159,7 @@ const Navbar: React.FC<Props> = ({ links = defaultLinks }) => {
                     </div>
                     <div className="border-t border-gray-700 mt-2 space-y-1 px-2 pt-2 pb-3">
                         {loading ? (
-                            <div className="text-gray-300 px-3 py-2 text-base font-medium animate-pulse">
-                                Loading...
-                            </div>
+                            <Loader />
                         ) : isAuthenticated && user ? (
                             <Link
                                 to="/account"

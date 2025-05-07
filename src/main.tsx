@@ -8,24 +8,25 @@ import Dashboard from './pages/Dashboard.tsx';
 import Login from './pages/account/login.tsx';
 import Signup from './pages/account/signUp.tsx';
 import Profile from './pages/account/profile.tsx';
+import { ACCOUNT, HOME, LOGIN, RENDERER, SIGNUP } from './routes.ts';
 
 
 
 const router = createBrowserRouter([
   {
-    path: "/", element: <Dashboard />, children: [
-      { path: "/", Component: Builder },
-      { path: "/renderer", Component: Renderer },
+    path: HOME, element: <Dashboard />, children: [
+      { path: HOME, Component: Builder },
+      { path: RENDERER, Component: Renderer },
       {
-        path: "/login",
+        path: LOGIN,
         element: <Login />,
       },
       {
-        path: "/signup",
+        path: SIGNUP,
         element: <Signup />,
       },
       {
-        path: "/account",
+        path: ACCOUNT,
         element: <Profile />,
       },
     ]

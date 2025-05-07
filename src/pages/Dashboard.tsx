@@ -4,28 +4,12 @@ import Navbar from '../components/Navbar';
 import useAuthStore from '../userStore';
 
 function Dashboard() {
-    const { fetchUser, loading, error } = useAuthStore();
+    const { fetchUser } = useAuthStore();
 
     // Fetch user data on component mount
     useEffect(() => {
         fetchUser();
     }, [fetchUser]);
-
-    if (loading) {
-        return (
-            <div className="flex justify-center items-center min-h-screen">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-            </div>
-        );
-    }
-
-    if (error) {
-        return (
-            <div className="text-center text-red-500 py-8">
-                <p>{error}</p>
-            </div>
-        );
-    }
 
     return (
         <React.Fragment>

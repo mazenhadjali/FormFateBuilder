@@ -1,6 +1,6 @@
 import { FaSpinner } from 'react-icons/fa';
 
-const Loader = ({ text = "Loading..." }: { text?: string }) => {
+const Loader = () => {
     return (
         <div className="flex flex-col items-center justify-center py-6">
             <FaSpinner
@@ -10,7 +10,6 @@ const Loader = ({ text = "Loading..." }: { text?: string }) => {
                 }}
                 className="text-4xl mb-2"
             />
-            <p className="text-sm text-gray-700">{text}</p>
         </div>
     );
 };
