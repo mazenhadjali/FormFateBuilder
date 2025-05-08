@@ -4,6 +4,7 @@ import SelectionModal from '../components/modals/SelectionModal';
 import JsonPreviewModal from '../components/modals/JSONPreviewModal';
 import ModificationModal from '../components/modals/ModificationModal';
 import Loader from '../components/Loader';
+import EditProcessModal from '../components/modals/EditProcessModal';
 
 
 
@@ -31,6 +32,12 @@ const ModalContainer: React.FC = () => {
             return (
                 <React.Suspense fallback={<Loader />}>
                     <ModificationModal key={id} id={id} params={params} type={type} />
+                </React.Suspense>
+            );
+        case 'edit-process':
+            return (
+                <React.Suspense fallback={<Loader />}>
+                    <EditProcessModal key={id} id={id} params={params} type={type} />
                 </React.Suspense>
             );
         default:

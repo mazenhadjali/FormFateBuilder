@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import { FaBars } from 'react-icons/fa6';
 import { IoMdClose } from 'react-icons/io';
-import useAuthStore from '../userStore';
+import useAuthStore from '../stores/userStore';
 import Loader from './Loader';
 
 type NavLink = {

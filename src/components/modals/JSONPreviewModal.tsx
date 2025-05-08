@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ModalInterface } from '../../modal/context';
 import { BiPlus, BiCopy, BiSave } from 'react-icons/bi';
-import useStore from '../../store';
+import useStore from '../../stores/store';
 import Modal, { ModalProps } from '../../modal/Modal';
 import { stringifyWithFunctions } from '../../utils/serialazation';
 import api from '../../utils/axiosInstance';
-import useAuthStore from '../../userStore';
+import useAuthStore from '../../stores/userStore';
 
 const JsonPreviewModal = ({ id }: ModalInterface) => {
     const { formSchema } = useStore();

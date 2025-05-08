@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { create } from 'zustand';
 import { FormFateProps } from 'react-form-fate';
-import { deleteProperty, updateField, updateSchema } from './utils/schemaUpdator';
+import { deleteProperty, updateField, updateSchema } from '../utils/schemaUpdator';
 import { FormDefinition } from 'formfatecore';
 
 interface SystemStore {

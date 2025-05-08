@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { ModalInterface } from '../../modal/context'
 import { BiPlus } from 'react-icons/bi'
-import useStore from '../../store'
+import useStore from '../../stores/store'
 import clsx from 'clsx'
 import { fieldTypes } from '../../utils/fieldTypes'
 import Modal, { ModalProps } from '../../modal/Modal'

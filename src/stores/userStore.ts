@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import api from './utils/axiosInstance'; // Assuming you have an axiosInstance for API calls
+import api from '../utils/axiosInstance'; // Assuming you have an axiosInstance for API calls
 
 interface User {
     id: string;

@@ -1,4 +1,4 @@
-import useStore from '../store';
+import useStore from '../stores/store';
 
 type DeleteFieldButtonProps = {
     identifier: string;
