@@ -1,26 +1,17 @@
-import React from 'react';
 import { FaSpinner } from 'react-icons/fa';
 
-type LoaderProps = {
-    size?: 'sm' | 'md' | 'lg' | 'xl';
+interface LoaderProps {
+    size?: string; // Tailwind size classes like 'text-2xl', 'text-4xl', etc.
     className?: string;
-};
+}
 
-const sizeClasses = {
-    sm: 'text-sm',
-    md: 'text-2xl',
-    lg: 'text-4xl',
-    xl: 'text-6xl',
-};
-
-const Loader: React.FC<LoaderProps> = ({ size = 'md', className = 'mx-auto text-center' }) => {
+const Loader: React.FC<LoaderProps> = ({ size = 'text-4xl', className = '' }) => {
     return (
         <FaSpinner
-            // apply both the spin and the colorcycle animations
             style={{
                 animation: 'spin 1s linear infinite, colorcycle 3s linear infinite',
             }}
-            className={`${sizeClasses[size]} ${className}`}
+            className={`${size} mx-auto ${className}`}
         />
     );
 };

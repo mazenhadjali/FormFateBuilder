@@ -15,21 +15,17 @@ function SchemasList() {
         fetchSchemas();
     }, [fetchSchemas]);
 
-    if (loading) {
-        return <Loader />;
-    }
-
-    if (error) {
+    if (loading || error) {
         return (
-            <div className="flex justify-center items-center mt-10">
-                <p className="text-red-500 text-lg">{error}</p>
+            <div className="mx-auto mt-8 p-4 sm:p-6 bg-transparent">
+                <Loader size="text-4xl" className="mx-auto" />
             </div>
-        );
+        )
     }
 
     return (
-        <div className="max-w-5xl mx-auto mt-8 p-4 bg-white shadow-lg rounded-lg">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">My Process Schemas</h2>
+        <div className="max-w-5xl mx-auto mt-8 p-4 sm:p-6 bg-white shadow-lg rounded-lg">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6 text-center sm:text-left">My Process Schemas</h2>
             {schemas.length === 0 ? (
                 <p className="text-gray-500 text-center">No process schemas found.</p>
             ) : (
@@ -37,29 +33,29 @@ function SchemasList() {
                     {schemas.map((schema) => (
                         <li
                             key={schema._id}
-                            className="flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 rounded-lg border"
+                            className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 bg-gray-50 hover:bg-gray-100 rounded-lg border"
                         >
-                            <div>
-                                <h3 className="text-lg font-semibold text-gray-800">{schema.title}</h3>
+                            <div className="mb-4 sm:mb-0">
+                                <h3 className="text-base sm:text-lg font-semibold text-gray-800">{schema.title}</h3>
                                 {schema.description && (
                                     <p className="text-sm text-gray-500">{schema.description}</p>
                                 )}
                             </div>
-                            <div className="flex space-x-2">
+                            <div className="grid grid-cols-2 md:flex md:flex-wrap gap-2 md:justify-center sm:justify-end">
                                 <button
-                                    className="inline-flex items-center px-3 py-1.5 bg-blue-100 text-blue-600 rounded hover:bg-blue-200 transition"
+                                    className="inline-flex items-center px-2.5 py-1.5 sm:px-3 sm:py-1.5 bg-blue-100 text-blue-600 text-sm rounded hover:bg-blue-200 transition font-semibold"
                                     onClick={() => navigate(`/renderer/?schemaId=${schema._id}`)}
                                 >
                                     <FaEye className="w-4 h-4 mr-1" /> View
                                 </button>
                                 <button
-                                    className="inline-flex items-center px-3 py-1.5 bg-green-100 text-green-600 rounded hover:bg-green-200 transition"
+                                    className="inline-flex items-center px-2.5 py-1.5 sm:px-3 sm:py-1.5 bg-green-100 text-green-600 text-sm rounded hover:bg-green-200 transition font-semibold"
                                     onClick={() => navigate(`/?schemaId=${schema._id}`)}
                                 >
                                     <BiPencil className="w-4 h-4 mr-1" /> Edit Schema
                                 </button>
                                 <button
-                                    className="inline-flex items-center px-3 py-1.5 bg-green-200 text-green-700 rounded hover:bg-green-300 transition"
+                                    className="inline-flex items-center px-2.5 py-1.5 sm:px-3 sm:py-1.5 bg-green-200 text-green-700 text-sm rounded hover:bg-green-300 transition font-semibold"
                                     onClick={() =>
                                         pushModal({
                                             type: "edit-process",
@@ -74,7 +70,7 @@ function SchemasList() {
                                     <BiPencil className="w-4 h-4 mr-1" /> Edit Process info
                                 </button>
                                 <button
-                                    className="inline-flex items-center px-3 py-1.5 bg-red-100 text-red-600 rounded hover:bg-red-200 transition"
+                                    className="inline-flex items-center px-2.5 py-1.5 sm:px-3 sm:py-1.5 bg-red-100 text-red-600 text-sm rounded hover:bg-red-200 transition font-semibold"
                                     onClick={() => {
                                         if (confirm("Are you sure you want to delete this schema?")) {
                                             deleteSchema(schema._id);

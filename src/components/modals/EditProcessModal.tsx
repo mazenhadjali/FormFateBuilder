@@ -6,7 +6,7 @@ import api from '../../utils/axiosInstance';
 import { useSchemasStore } from '../../stores/schemasStore';
 
 const EditProcessModal = ({ id, params: { schemaId, title: initialTitle, description: initialDescription } }: ModalInterface) => {
-    const { fetchSchemas } = useSchemasStore(); // Optional: refetch schemas after editing
+    const { fetchSchemas } = useSchemasStore();
 
     const [title, setTitle] = useState(initialTitle || '');
     const [description, setDescription] = useState(initialDescription || '');
@@ -26,7 +26,7 @@ const EditProcessModal = ({ id, params: { schemaId, title: initialTitle, descrip
                 title,
                 description,
             });
-            await fetchSchemas(); // Optional: refetch schemas to reflect the change
+            await fetchSchemas();
             return Promise.resolve();
         } catch (err) {
             console.error('Failed to update process info:', err);
@@ -48,31 +48,31 @@ const EditProcessModal = ({ id, params: { schemaId, title: initialTitle, descrip
     return (
         <React.Fragment>
             <Modal key={id} {...modalProps}>
-                <div className="p-1 my-2">
+                <div className="p-2 sm:p-4 my-2">
                     <div className="mb-4">
-                        <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
-                            Title <span className="text-red-500">*</span>
+                        <label htmlFor="title" className="block text-sm sm:text-base font-medium text-gray-700 mb-1">
+                            Process Name <span className="text-red-500">*</span>
                         </label>
                         <input
                             type="text"
                             id="title"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
                             placeholder="Enter process title"
                         />
                     </div>
 
                     <div className="mb-4">
-                        <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
-                            Description
+                        <label htmlFor="description" className="block text-sm sm:text-base font-medium text-gray-700 mb-1">
+                            Description:
                         </label>
                         <textarea
                             id="description"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             rows={4}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
                             placeholder="Enter process description"
                         ></textarea>
                     </div>
