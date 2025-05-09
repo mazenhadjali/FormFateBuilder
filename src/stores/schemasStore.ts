@@ -6,6 +6,8 @@ export type Schema = {
     _id: string;
     title: string;
     description?: string;
+    key: string;
+    data?: any;
 };
 
 type SchemasStore = {

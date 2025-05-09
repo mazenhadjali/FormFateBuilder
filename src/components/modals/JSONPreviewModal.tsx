@@ -41,6 +41,7 @@ const JsonPreviewModal = ({ id }: ModalInterface) => {
                 await api.post('/schemas', {
                     data: formSchema,
                     title: 'Schema ' + Date.now().toString(),
+                    key: 'schema_' + Date.now().toString(),
                     description: '',
                 });
             }

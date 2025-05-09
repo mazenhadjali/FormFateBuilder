@@ -5,10 +5,11 @@ import Modal, { ModalProps } from '../../modal/Modal';
 import api from '../../utils/axiosInstance';
 import { useSchemasStore } from '../../stores/schemasStore';
 
-const EditProcessModal = ({ id, params: { schemaId, title: initialTitle, description: initialDescription } }: ModalInterface) => {
+const EditProcessModal = ({ id, params: { schemaId, key: initialKey, title: initialTitle, description: initialDescription } }: ModalInterface) => {
     const { fetchSchemas } = useSchemasStore();
 
     const [title, setTitle] = useState(initialTitle || '');
+    const [key, setKey] = useState(initialKey || '');
     const [description, setDescription] = useState(initialDescription || '');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -25,6 +26,7 @@ const EditProcessModal = ({ id, params: { schemaId, title: initialTitle, descrip
             await api.put(`/schemas/${schemaId}`, {
                 title,
                 description,
+                key,
             });
             await fetchSchemas();
             return Promise.resolve();
@@ -58,6 +60,20 @@ const EditProcessModal = ({ id, params: { schemaId, title: initialTitle, descrip
                             id="title"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
+                            className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            placeholder="Enter process title"
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label htmlFor="title" className="block text-sm sm:text-base font-medium text-gray-700 mb-1">
+                            Process Key <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="key"
+                            value={key}
+                            onChange={(e) => setKey(e.target.value)}
                             className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
                             placeholder="Enter process title"
                         />

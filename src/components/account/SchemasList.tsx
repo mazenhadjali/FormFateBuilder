@@ -36,9 +36,15 @@ function SchemasList() {
                             className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 bg-gray-50 hover:bg-gray-100 rounded-lg border"
                         >
                             <div className="mb-4 sm:mb-0">
-                                <h3 className="text-base sm:text-lg font-semibold text-gray-800">{schema.title}</h3>
-                                {schema.description && (
-                                    <p className="text-sm text-gray-500">{schema.description}</p>
+                                <div className="flex items-center gap-2">
+                                    <span className="text-gray-400">Title:</span>
+                                    <span className="text-base sm:text-lg font-semibold text-gray-800">{schema.title}</span>
+                                </div>
+                                {schema.key && (
+                                    <div className="flex items-center gap-2 text-sm">
+                                        <span className="text-gray-400">Key:</span>
+                                        <span className="text-gray-700 font-medium">{schema.key}</span>
+                                    </div>
                                 )}
                             </div>
                             <div className="grid grid-cols-2 md:flex md:flex-wrap gap-2 md:justify-center sm:justify-end">
@@ -62,6 +68,7 @@ function SchemasList() {
                                             params: {
                                                 schemaId: schema._id,
                                                 title: schema.title,
+                                                key: schema.key,
                                                 description: schema.description,
                                             },
                                         })
