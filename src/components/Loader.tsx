@@ -11,9 +11,9 @@ const Loader: React.FC<LoaderProps> = ({ size = 'text-4xl', className = '' }) =>
             style={{
                 animation: 'spin 1s linear infinite, colorcycle 3s linear infinite',
             }}
-            className={`${size} mx-auto ${className}`}
-        />
+            className={`${size} mx-auto animate-spin ${className}`} />
     );
-};
+}
+
 
 export default Loader;
