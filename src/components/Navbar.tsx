@@ -51,6 +51,14 @@ const Navbar: React.FC<Props> = ({ links = defaultLinks }) => {
 
                     <div className="flex flex-1 items-center justify-between sm:items-stretch sm:justify-start">
                         <div className="flex justify-start items-end gap-1 flex-wrap">
+                            <img
+                                src="/icon.png"
+                                alt="Logo"
+                                className='h-8 w-8'
+                                style={{
+                                    filter: 'grayscale(100%) brightness(0) invert(1)',
+                                }}
+                            />
                             <h1 className="text-2xl font-bold text-white">
                                 Form Fate
                             </h1>

@@ -41,9 +41,16 @@ function Builder() {
 
       <div className="bg-gradient-to-br from-green-100 to-pink-50 py-3 px-1">
         {/* Title */}
-        <h1 className="text-2xl md:text-4xl font-bold text-center text-orange-500 mb-4">
-          Form Fate Builder Tool
-        </h1>
+        <div className="flex justify-center items-center my-4">
+          <img
+            src="/icon.png"
+            alt="Logo"
+            className="h-20 object-contain mb-4"
+          />
+          <h1 className="text-2xl md:text-4xl font-bold text-center text-blue-500/90 mb-4">
+            Form Fate Builder Tool
+          </h1>
+        </div>
 
         {/* Intro Card */}
         <div className="container mx-auto mb-8">

@@ -64,7 +64,18 @@ function Renderer() {
 
     return (
         <React.Fragment>
+
             <div className="container mx-auto bg-gradient-to-br from-green-100 to-pink-50 py-3 px-1">
+                <div className="flex justify-center items-center my-4">
+                    <img
+                        src="/icon.png"
+                        alt="Logo"
+                        className="h-20 object-contain mb-4"
+                    />
+                    <h1 className="text-2xl md:text-4xl font-bold text-center text-blue-500/90 mb-4">
+                        Form Fate Schema Tester
+                    </h1>
+                </div>
                 <div className="rounded-2xl shadow-xl p-6 bg-white/20 backdrop-blur-md border border-amber-400 text-center">
                     <h1 className="text-2xl font-bold text-gray-800">Renderer Component</h1>
                     <p className="mt-4 text-gray-600">This is a placeholder for the Renderer component.</p>

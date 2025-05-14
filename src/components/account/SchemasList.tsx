@@ -35,17 +35,24 @@ function SchemasList() {
                             key={schema._id}
                             className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 bg-gray-50 hover:bg-gray-100 rounded-lg border"
                         >
-                            <div className="mb-4 sm:mb-0">
-                                <div className="flex items-center gap-2">
-                                    <span className="text-gray-400">Title:</span>
-                                    <span className="text-base sm:text-lg font-semibold text-gray-800">{schema.title}</span>
-                                </div>
-                                {schema.key && (
-                                    <div className="flex items-center gap-2 text-sm">
-                                        <span className="text-gray-400">Key:</span>
-                                        <span className="text-gray-700 font-medium">{schema.key}</span>
+                            <div className="flex items-center justify-start sm:mb-0 gap-2">
+                                <img
+                                    src="/icon.png"
+                                    alt="Logo"
+                                    className="object-contain mb-2 max-h-9 max-sm:hidden"
+                                />
+                                <div className="mb-4 sm:mb-0">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-gray-400">Title:</span>
+                                        <span className="text-base sm:text-lg font-semibold text-gray-800">{schema.title}</span>
                                     </div>
-                                )}
+                                    {schema.key && (
+                                        <div className="flex items-center gap-2 text-sm">
+                                            <span className="text-gray-400">Key:</span>
+                                            <span className="text-gray-700 font-medium">{schema.key}</span>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                             <div className="grid grid-cols-2 md:flex md:flex-wrap gap-2 md:justify-center sm:justify-end">
                                 <button
