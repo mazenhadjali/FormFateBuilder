@@ -4,8 +4,6 @@ import { components } from './components';
 
 
 function FormFateFactory({ formDefinition, onSubmit }: FormFateProps) {
-
-
     return (
         <React.Fragment>
             <FormFate

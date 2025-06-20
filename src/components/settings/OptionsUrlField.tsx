@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import CodeEditor from './CodeEditor';
 import { getNthPosition } from '../../utils/helpers';
 
@@ -23,12 +23,12 @@ interface Props {
 
 const OptionsUrlField: React.FC<Props> = ({ field, setField }) => {
     const hasOptionsUrl = field.optionsUrl !== undefined;
-    const optionsUrl = field.optionsUrl || {} as OptionsUrl;
-    const [headers, setHeaders] = React.useState<KeyValue[]>(Object.entries(optionsUrl.headers || {}).map(([key, value]) => ({ key, value })));
-    const [params, setParams] = React.useState<KeyValue[]>(Object.entries(optionsUrl.params || {}).map(([key, value]) => ({ key, value })));
+    const [optionsUrl, setOptionsUrl] = useState(field.optionsUrl)
+    const [headers, setHeaders] = React.useState<KeyValue[]>(Object.entries(optionsUrl?.headers || {}).map(([key, value]) => ({ key, value })));
+    const [params, setParams] = React.useState<KeyValue[]>(Object.entries(optionsUrl?.params || {}).map(([key, value]) => ({ key, value })));
     const [mapperCode, setMapperCode] = React.useState(() => {
-        if (!optionsUrl.mapper) return '';
-        const fnStr = optionsUrl.mapper.toString();
+        if (!optionsUrl?.mapper) return '';
+        const fnStr = optionsUrl?.mapper.toString();
         if (fnStr.startsWith('function')) {
             return fnStr.trim().substring(getNthPosition(fnStr, '{', 2) + 1, fnStr.lastIndexOf('}')).trim();
         } else {
@@ -48,16 +48,33 @@ const OptionsUrlField: React.FC<Props> = ({ field, setField }) => {
                 [key]: value
             }
         });
+
+        setOptionsUrl(prev => {
+            const updated = {
+                ...prev,
+                [key]: value
+            };
+            // Ensure 'url' is always defined (fallback to empty string if missing)
+            return {
+                url: updated.url ?? '',
+                method: updated.method,
+                headers: updated.headers,
+                params: updated.params,
+                body: updated.body,
+                mapper: updated.mapper
+            };
+        });
+
     }, [field, optionsUrl, setField]);
 
     const handleSaveCode = (formattedCode: string) => {
         try {
-            const mapperFunction = new Function('{response, formValues}', formattedCode) as (value: any, formValues?: any) => void;
+            const mapperFunction = new Function('{response, formValues}', formattedCode);
             setMapperCode(mapperFunction);
             setField(prev => ({
                 ...prev,
                 optionsUrl: {
-                    ...prev.optionsUrl,
+                    ...optionsUrl,
                     mapper: mapperFunction
                 }
             }));
@@ -108,7 +125,7 @@ const OptionsUrlField: React.FC<Props> = ({ field, setField }) => {
                         <label className="block text-sm mb-1">URL</label>
                         <input
                             type="text"
-                            value={optionsUrl.url}
+                            value={optionsUrl?.url}
                             onChange={(e) => updateField('url', e.target.value)}
                             placeholder="https://api.example.com"
                             className="w-full rounded-lg border px-3 py-2 text-sm"
@@ -118,7 +135,7 @@ const OptionsUrlField: React.FC<Props> = ({ field, setField }) => {
                     <div>
                         <label className="block text-sm mb-1">Method</label>
                         <select
-                            value={optionsUrl.method}
+                            value={optionsUrl?.method}
                             onChange={(e) => updateField('method', e.target.value as 'GET' | 'POST')}
                             className="w-full rounded-lg border px-3 py-2 text-sm"
                         >
@@ -169,11 +186,11 @@ const OptionsUrlField: React.FC<Props> = ({ field, setField }) => {
                         </div>
                     ))}
 
-                    {optionsUrl.method === 'POST' && (
+                    {optionsUrl?.method === 'POST' && (
                         <div>
                             <label className="block text-sm mb-1">Body (JSON)</label>
                             <textarea
-                                value={optionsUrl.body || ''}
+                                value={optionsUrl?.body || ''}
                                 onChange={(e) => updateField('body', e.target.value)}
                                 placeholder='{"key":"value"}'
                                 className="w-full rounded-lg border px-3 py-2 text-sm"

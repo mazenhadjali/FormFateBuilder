@@ -30,16 +30,17 @@ const JsonPreviewModal = ({ id }: ModalInterface) => {
     const handleSave = async () => {
         if (!formSchema || !isAuthenticated || !user) return;
         setSaving(true);
+        console.log('Saving schema:', JSON.parse(stringifyWithFunctions(formSchema)));
         try {
             if (schemaId) {
                 // Update existing schema
                 await api.put(`/schemas/${schemaId}`, {
-                    data: formSchema,
+                    data: JSON.parse(stringifyWithFunctions(formSchema)),
                 });
             } else {
                 // Create new schema
                 await api.post('/schemas', {
-                    data: formSchema,
+                    data: JSON.parse(stringifyWithFunctions(formSchema)),
                     title: 'Schema ' + Date.now().toString(),
                     key: 'schema_' + Date.now().toString(),
                     description: '',

@@ -4,7 +4,7 @@
  * Serializes an object, converting functions to string form.
  */
 export function stringifyWithFunctions(obj: any, space: number = 0): string {
-    return JSON.stringify(obj, (key, value) => {
+    return JSON.stringify(obj, function replacer(key, value) {
         if (typeof value === 'function') {
             return value.toString();
         }
