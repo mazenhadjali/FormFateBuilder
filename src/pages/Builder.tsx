@@ -7,6 +7,7 @@ import SchemaPreviewButton from "../components/SchemaPreviewButton";
 import FormFateFactory from "../components/formFactory";
 import Loader from "../components/Loader";
 import api from "../utils/axiosInstance";
+import { deserializeWithFunctions } from "../utils/serialazation";
 
 function Builder() {
   const { formSchema, setFormSchema } = useStore();
@@ -23,7 +24,10 @@ function Builder() {
         try {
           const response = await api.get(`/schemas/${schemaId}`);
           const data = response.data.data;
-          setFormSchema(data);
+          const schemaString = JSON.stringify(data, null, 2);
+          console.log('Fetched schema:', schemaString);
+
+          setFormSchema(deserializeWithFunctions(schemaString));
         } catch (error: any) {
           console.error('Error fetching schema:', error);
           setError(error.message || 'Something went wrong');
@@ -116,13 +120,17 @@ function Builder() {
                     <p>Error loading preview: {error}</p>
                   </div>
                 ) : (
-                  <FormFateFactory
-                    key={'form' + Date.now()}
-                    formDefinition={formSchema}
-                    onSubmit={(formData) => {
-                      console.log(formData);
-                    }}
-                  />
+                  <>
+                    {formSchema &&
+                      <FormFateFactory
+                        key={'form' + Date.now()}
+                        formDefinition={formSchema}
+                        onSubmit={(formData) => {
+                          console.log(formData);
+                        }}
+                      />
+                    }
+                  </>
                 )}
               </div>
             </div>
